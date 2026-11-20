@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- The app icon: a blue tile with three fingertips, as crates/trio/build.rs draws it. -->
+  <rect x="4" y="4" width="56" height="56" rx="11.2" fill="#0067c0"/>
+  <g fill="#fff">
+    <circle cx="17.72" cy="37.71" r="7.14"/>
+    <circle cx="32" cy="26.29" r="7.14"/>
+    <circle cx="46.28" cy="37.71" r="7.14"/>
+  </g>
+</svg>
