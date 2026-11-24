@@ -1,0 +1,872 @@
+:root {
+  color-scheme: light dark;
+  --accent: #0067c0;
+  --ink: #1b1b1b;
+  --muted: #5d5d5d;
+  --page: #f3f3f3;
+  --card: #ffffff;
+  --line: #e1e1e1;
+  --pad: #eef1f5;
+  --pad-line: #c9ced6;
+  --ok: #0f7b0f;
+  --ok-fill: #dff6dd;
+  --ok-line: #bae5be;
+  --bad: #c42b1c;
+  font-family: "Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, sans-serif;
+  line-height: 1.55;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --accent: #4cc2ff;
+    --ink: #f3f3f3;
+    --muted: #b8b8b8;
+    --page: #1c1c1c;
+    --card: #2b2b2b;
+    --line: #3d3d3d;
+    --pad: #333840;
+    --pad-line: #555b64;
+    --ok: #6ccb5f;
+    --ok-fill: #233823;
+    --ok-line: #355f35;
+    --bad: #ff99a4;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font-size: 1.0625rem;
+}
+
+a {
+  color: var(--accent);
+}
+
+a:focus-visible {
+  outline: 3px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Segoe UI Variable Display", "Segoe UI", system-ui, -apple-system, sans-serif;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.wrap {
+  width: min(1120px, 100% - 3rem);
+  margin-inline: auto;
+}
+
+/* The top of the page: the blue billboard of the Store banners. */
+.hero {
+  background: linear-gradient(135deg, #0054a6, #0078d4);
+  color: #fff;
+  padding: 2.5rem 0 4rem;
+  overflow: hidden;
+}
+
+.hero a {
+  color: #fff;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin: 0 0 3rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2.5rem, 5.4vw, 4.25rem);
+  letter-spacing: -0.01em;
+}
+
+.lead {
+  max-width: 32rem;
+  margin: 1.25rem 0 2rem;
+  color: rgb(255 255 255 / 0.9);
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+}
+
+.badge {
+  display: inline-block;
+  border-radius: 8px;
+}
+
+.badge img {
+  display: block;
+  width: 210px;
+  height: auto;
+}
+
+.fine {
+  margin: 0.9rem 0 0;
+  color: rgb(255 255 255 / 0.8);
+  font-size: 0.95rem;
+}
+
+.hero-art {
+  margin: 0;
+}
+
+/* The drag in the hero: the fingers land, move the window, lift, and do it back. */
+.drag .win {
+  animation: win 7s ease-in-out infinite;
+}
+
+.drag .fingers {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: fingers 7s ease-in-out infinite;
+}
+
+.drag .trail-right,
+.drag .trail-left {
+  transform-box: fill-box;
+  opacity: 0;
+}
+
+.drag .trail-right {
+  transform-origin: left center;
+  animation: trail-right 7s ease-in-out infinite;
+}
+
+.drag .trail-left {
+  transform-origin: right center;
+  animation: trail-left 7s ease-in-out infinite;
+}
+
+@keyframes win {
+  0%,
+  8% {
+    transform: translateX(0);
+  }
+  45%,
+  68% {
+    transform: translateX(220px);
+  }
+  90%,
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fingers {
+  0% {
+    opacity: 0;
+    transform: translateX(0) scale(0.7);
+  }
+  8% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  45% {
+    opacity: 1;
+    transform: translateX(220px) scale(1);
+  }
+  52%,
+  60% {
+    opacity: 0;
+    transform: translateX(220px) scale(0.7);
+  }
+  68% {
+    opacity: 1;
+    transform: translateX(220px) scale(1);
+  }
+  90% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  97%,
+  100% {
+    opacity: 0;
+    transform: translateX(0) scale(0.7);
+  }
+}
+
+@keyframes trail-right {
+  0%,
+  8% {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  9% {
+    opacity: 1;
+  }
+  45% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+  52%,
+  100% {
+    opacity: 0;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes trail-left {
+  0%,
+  68% {
+    opacity: 0;
+    transform: scaleX(0);
+  }
+  69% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+  97%,
+  100% {
+    opacity: 0;
+    transform: scaleX(1);
+  }
+}
+
+/* Sections */
+section {
+  padding: 4.5rem 0 0;
+}
+
+section > .wrap > h2,
+.section-title {
+  margin: 0 0 1.5rem;
+  font-size: clamp(1.75rem, 3.4vw, 2.5rem);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+.card h3 {
+  margin: 1.25rem 0 0.5rem;
+  font-size: 1.35rem;
+}
+
+.card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.art {
+  border-radius: 12px;
+  background: var(--page);
+}
+
+/* Shared parts of the pictures */
+.pad {
+  fill: var(--pad);
+  stroke: var(--pad-line);
+  stroke-width: 2;
+}
+
+.dot {
+  fill: var(--accent);
+}
+
+.ghost {
+  fill: none;
+  stroke: var(--pad-line);
+  stroke-width: 2;
+  stroke-dasharray: 6 6;
+}
+
+.sheet {
+  fill: var(--card);
+  stroke: var(--line);
+  stroke-width: 1.5;
+}
+
+.bar {
+  fill: var(--pad);
+}
+
+.ink {
+  fill: var(--ink);
+}
+
+.soft {
+  fill: var(--pad-line);
+}
+
+.tint {
+  fill: var(--accent);
+  opacity: 0.25;
+}
+
+.flow {
+  fill: var(--accent);
+  opacity: 0.35;
+}
+
+.text {
+  fill: var(--ink);
+  font-family: inherit;
+}
+
+.text-muted {
+  fill: var(--muted);
+  font-family: inherit;
+}
+
+.text-accent {
+  fill: var(--accent);
+  font-family: inherit;
+  font-weight: 600;
+}
+
+.white-line {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.bad-fill {
+  fill: var(--bad);
+}
+
+.ok-fill {
+  fill: var(--ok);
+}
+
+.bad-ring {
+  fill: none;
+  stroke: var(--bad);
+  stroke-width: 2.5;
+}
+
+.chevron {
+  fill: none;
+  stroke: var(--muted);
+  stroke-width: 1.6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* The tap: rings spread from the fingers, and a new tab opens. */
+.tap .ring {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 3;
+  transform-box: fill-box;
+  transform-origin: center;
+  opacity: 0;
+  animation: ring 2.8s ease-out infinite;
+}
+
+.tap .ring.late {
+  animation-delay: 0.25s;
+}
+
+.tap .new-tab {
+  opacity: 0;
+  animation: new-tab 2.8s ease-out infinite;
+}
+
+.tab-new {
+  fill: var(--card);
+  stroke: var(--accent);
+  stroke-width: 2;
+}
+
+@keyframes ring {
+  0% {
+    opacity: 0.9;
+    transform: scale(0.5);
+  }
+  60%,
+  100% {
+    opacity: 0;
+    transform: scale(1.5);
+  }
+}
+
+@keyframes new-tab {
+  0%,
+  12% {
+    opacity: 0;
+  }
+  22%,
+  85% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* The fix: each Windows list changes to Nothing, and its mark turns green. */
+.fix .after {
+  opacity: 0;
+}
+
+.fix .row-1 .before {
+  animation: before-1 7s infinite;
+}
+
+.fix .row-1 .after {
+  animation: after-1 7s infinite;
+}
+
+.fix .row-2 .before {
+  animation: before-2 7s infinite;
+}
+
+.fix .row-2 .after {
+  animation: after-2 7s infinite;
+}
+
+@keyframes before-1 {
+  0%,
+  30% {
+    opacity: 1;
+  }
+  34%,
+  92% {
+    opacity: 0;
+  }
+  96%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes after-1 {
+  0%,
+  30% {
+    opacity: 0;
+  }
+  34%,
+  92% {
+    opacity: 1;
+  }
+  96%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes before-2 {
+  0%,
+  55% {
+    opacity: 1;
+  }
+  59%,
+  92% {
+    opacity: 0;
+  }
+  96%,
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes after-2 {
+  0%,
+  55% {
+    opacity: 0;
+  }
+  59%,
+  92% {
+    opacity: 1;
+  }
+  96%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* The hand of the Windows three-finger gestures: a line around three fingers up and a thumb. */
+.hand .outer {
+  fill: none;
+  stroke: var(--ink);
+  stroke-linecap: round;
+}
+
+.hand .outer-palm {
+  fill: var(--ink);
+}
+
+.hand .inner {
+  fill: none;
+  stroke: var(--card);
+  stroke-linecap: round;
+}
+
+.hand .inner-palm {
+  fill: var(--card);
+}
+
+/* It tells you if it works */
+.works {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.works h2 {
+  margin: 0 0 1rem;
+  font-size: clamp(1.75rem, 3.4vw, 2.5rem);
+}
+
+.works > div > p {
+  margin: 0 0 1.25rem;
+  color: var(--muted);
+}
+
+.checks {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.checks li {
+  position: relative;
+  margin: 0.6rem 0;
+  padding-left: 2rem;
+}
+
+.checks li::before {
+  content: "";
+  position: absolute;
+  top: 0.3rem;
+  left: 0;
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 50%;
+  background: var(--ok);
+}
+
+.checks li::after {
+  content: "";
+  position: absolute;
+  top: 0.55rem;
+  left: 0.38rem;
+  width: 0.28rem;
+  height: 0.5rem;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+/* A picture of the settings window, made of boxes. */
+.window {
+  background: var(--page);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 1rem;
+  box-shadow: 0 18px 40px rgb(0 0 0 / 0.12);
+}
+
+.status {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--ok-line);
+  border-radius: 10px;
+  background: var(--ok-fill);
+}
+
+.status-mark {
+  flex: none;
+  position: relative;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 50%;
+  background: var(--ok);
+}
+
+.status-mark::after {
+  content: "";
+  position: absolute;
+  top: 0.45rem;
+  left: 0.78rem;
+  width: 0.5rem;
+  height: 0.95rem;
+  border: solid #fff;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+.status strong {
+  display: block;
+  font-size: 1.2rem;
+}
+
+.status span {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.rows {
+  margin-top: 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--card);
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.85rem 1.1rem;
+}
+
+.row + .row {
+  border-top: 1px solid var(--line);
+}
+
+.switch {
+  flex: none;
+  position: relative;
+  width: 2.5rem;
+  height: 1.25rem;
+  border-radius: 1rem;
+  background: var(--accent);
+}
+
+.switch::after {
+  content: "";
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background: #fff;
+}
+
+@media (prefers-color-scheme: dark) {
+  .switch::after {
+    background: #1c1c1c;
+  }
+}
+
+/* Before you start */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: step;
+}
+
+.steps li {
+  position: relative;
+  padding: 1.5rem;
+  padding-top: 4.25rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--card);
+  counter-increment: step;
+}
+
+.steps li::before {
+  content: counter(step);
+  position: absolute;
+  top: 1.25rem;
+  left: 1.5rem;
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: var(--accent);
+  color: var(--card);
+  font-weight: 600;
+}
+
+.steps p {
+  margin: 0.5rem 0 0;
+  color: var(--muted);
+}
+
+.note {
+  margin: 1.25rem 0 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* No data */
+.privacy-band {
+  padding: 2rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--card);
+  text-align: center;
+}
+
+.privacy-band h2 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+}
+
+.privacy-band p {
+  margin: 0;
+  color: var(--muted);
+}
+
+/* Get it */
+.get {
+  margin-top: 4.5rem;
+  padding: 4rem 0;
+  background: linear-gradient(135deg, #0054a6, #0078d4);
+  color: #fff;
+  text-align: center;
+}
+
+.get h2 {
+  margin: 0 0 1.5rem;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.get .fine {
+  margin-top: 1rem;
+}
+
+.site-footer {
+  padding: 2rem 0 2.5rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.site-footer p {
+  margin: 0.35rem 0;
+}
+
+/* The privacy policy and the missing page */
+.topbar {
+  padding: 1rem 0;
+  background: linear-gradient(135deg, #0054a6, #0078d4);
+}
+
+.topbar a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.doc {
+  width: min(46rem, 100% - 3rem);
+  margin: 0 auto;
+  padding: 2.5rem 0 3rem;
+}
+
+.doc h1 {
+  margin: 0 0 0.5rem;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+}
+
+.doc h2 {
+  margin: 2.25rem 0 0.5rem;
+  font-size: 1.35rem;
+}
+
+.doc li {
+  margin: 0.5rem 0;
+}
+
+.date {
+  color: var(--muted);
+}
+
+code {
+  font-family: "Cascadia Mono", Consolas, ui-monospace, monospace;
+  font-size: 0.92em;
+}
+
+@media (max-width: 860px) {
+  .hero-grid,
+  .works {
+    grid-template-columns: 1fr;
+  }
+
+  .cards,
+  .steps {
+    grid-template-columns: 1fr;
+  }
+
+  .brand {
+    margin-bottom: 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drag .win,
+  .drag .fingers,
+  .drag .trail-right,
+  .drag .trail-left,
+  .tap .ring,
+  .tap .new-tab,
+  .fix .before,
+  .fix .after {
+    animation: none;
+  }
+
+  .drag .win,
+  .drag .fingers {
+    transform: translateX(110px);
+  }
+
+  .drag .fingers,
+  .tap .new-tab,
+  .fix .after {
+    opacity: 1;
+  }
+
+  .drag .trail-right {
+    opacity: 1;
+    transform: scaleX(0.5);
+  }
+
+  .fix .before {
+    opacity: 0;
+  }
+}
