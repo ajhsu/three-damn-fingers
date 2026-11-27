@@ -1,7 +1,7 @@
-# no-transform keeps Cloudflare from adding scripts, such as its analytics beacon, to the pages.
+# Cloudflare adds its Web Analytics beacon to each page: the policy allows that script and its reports.
 /*
-  Cache-Control: public, max-age=0, must-revalidate, no-transform
-  Content-Security-Policy: default-src 'none'; img-src 'self'; style-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
+  Cache-Control: public, max-age=0, must-revalidate
+  Content-Security-Policy: default-src 'none'; script-src https://static.cloudflareinsights.com; connect-src 'self'; img-src 'self'; style-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin

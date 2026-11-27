@@ -4,13 +4,13 @@ The official website of Three Damn Fingers, https://threedamnfingers.com/, and i
 policy. Cloudflare hosts it as static files on Workers, the current form of Cloudflare Pages.
 
 - `public`: the site. Cloudflare serves this folder.
-  - `index.html`: the one page. It has no scripts. CSS animates its pictures, and stops them
+  - `index.html`: the one page. It has no scripts of its own. CSS animates its pictures, and stops them
     when Windows asks for less motion.
   - `privacy.html`: the privacy policy, at https://threedamnfingers.com/privacy.
   - `404.html`: the page for a missing address.
   - `style.css`, `icon.svg`, `badge.svg` (the official Microsoft Store badge), and `og.png` (the
     picture for link previews).
-  - `_headers`: the security headers. The site loads nothing from other websites.
+  - `_headers`: the security headers. The only script is the Cloudflare Web Analytics beacon, which Cloudflare adds to each page.
 - `wrangler.jsonc`: the Worker `threedamnfingers`. It serves `public` on threedamnfingers.com,
   with no workers.dev address and no request logs.
 - `www`: the Worker `threedamnfingers-www`. It redirects www.threedamnfingers.com to
